@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [OpenCart Automation Test Suite]" parallel="tests">
+  <listeners>
+    <listener class-name="com.qa.OpenCart.testlisteners.ExtentReportListener"/>
+  </listeners>
+  <test thread-count="2" name="ProductInfo Test(failed)" parallel="tests">
+    <classes>
+      <class name="com.qa.OpenCart.Tests.ProductInfoTest">
+        <methods>
+          <include name="productImagesTest"/>
+          <include name="productInfoPageSetup"/>
+          <include name="tearDown"/>
+          <include name="verifyproductInfoTest_MacBook"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.qa.OpenCart.Tests.ProductInfoTest -->
+    </classes>
+  </test> <!-- ProductInfo Test(failed) -->
+</suite> <!-- Failed suite [OpenCart Automation Test Suite] -->
