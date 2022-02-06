@@ -3,6 +3,7 @@
 <suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [OpenCart Automation Test Suite]" parallel="tests">
   <listeners>
     <listener class-name="com.qa.OpenCart.testlisteners.ExtentReportListener"/>
+    <listener class-name="com.qa.OpenCart.testlisteners.TesultsListener"/>
   </listeners>
   <test thread-count="2" name="ProductInfo Test(failed)" parallel="tests">
     <classes>

@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
+import com.qa.OpenCart.utils.OptionsManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -28,7 +28,8 @@ public class BasePage {
 	public WebDriver driver;
 	public Properties prop;
 	
-	//public OptionsManager optionsManager;
+	public OptionsManager optionsManager;
+	public static String highlight;
 	
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	/**
@@ -38,20 +39,20 @@ public class BasePage {
 	 * @return This returns webdriver
 	 */
 	public WebDriver init_driver(String browser) {
-//System.out.println("Browser is:" + browser);
-
-//optionsManager = new OptionsManager(prop);
+System.out.println("Browser is:" + browser);
+highlight=prop.getProperty("highlight");
+optionsManager = new OptionsManager(prop);
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			//driver = new ChromeDriver();
-			tlDriver.set(new ChromeDriver());
+			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 		} 
 		else if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			//driver = new FirefoxDriver();
 			
-			tlDriver.set(new FirefoxDriver());
+			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 			
 		} else {
 			System.out.println("Please enter correct browser");

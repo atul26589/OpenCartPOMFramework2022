@@ -5,6 +5,9 @@
 
 <listeners>
 			<listener class-name="com.qa.OpenCart.testlisteners.ExtentReportListener" />
+			
+			
+			<listener class-name="com.qa.OpenCart.testlisteners.TesultsListener" />
 
 </listeners>
 

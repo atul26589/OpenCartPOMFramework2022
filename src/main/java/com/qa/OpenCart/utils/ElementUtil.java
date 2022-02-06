@@ -20,18 +20,26 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.qa.OpenCart.base.BasePage;
+
 //import com.qa.OpenCart.factory.DriverFactory;
 
 public class ElementUtil {
 
 	private WebDriver driver;
-
+private JavaScriptUtil jsUtil;
+	
 	public ElementUtil(WebDriver driver) {
 		this.driver = driver;
-	}
+		jsUtil=new JavaScriptUtil(this.driver);	
+		}
 
 	public WebElement getElement(By locator) {
-		return driver.findElement(locator);
+		WebElement element=driver.findElement(locator);
+		if (BasePage.highlight.equals("true")) {
+			jsUtil.flash(element);
+		}
+		return element;
 	}
 
 	public List<WebElement> getElements(By locator) {
@@ -61,6 +69,7 @@ public class ElementUtil {
 		}
 		return eleTextList;
 	}
+	
 
 	public void printElementsText(By locator) {
 		getElementsTextList(locator).stream().forEach(e -> System.out.println(e));
@@ -276,6 +285,7 @@ public class ElementUtil {
 	 * @param timeOut
 	 * @return
 	 */
+	
 	public WebElement waitForElementToBeClickable(By locator, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, timeOut);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
